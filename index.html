@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Indian Heritage Club</title>
+  <meta name="description" content="Celebrate Indian culture on campus: events, festivals, workshops, and community." />
+  <style>
+    :root {
+      --bg: #0b0f14;
+      --card: #121823;
+      --text: #eaf1ff;
+      --muted: #a7b3c6;
+      --brand: #ff6a00; /* saffron */
+      --brand2: #128807; /* green */
+      --accent: #2bb7ff; /* blue accent for links */
+      --radius: 18px;
+      --shadow: 0 10px 30px rgba(0,0,0,0.35);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color: var(--text);
+      background: radial-gradient(1200px 800px at 80% -10%, rgba(255,106,0,0.25), transparent 60%),
+                 radial-gradient(1000px 700px at -10% 10%, rgba(18,136,7,0.25), transparent 60%),
+                 var(--bg);
+      line-height: 1.55;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .container { width: min(1100px, 92%); margin: 0 auto; }
+    header {
+      position: sticky; top: 0; z-index: 50;
+      backdrop-filter: blur(10px);
+      background: linear-gradient(180deg, rgba(11,15,20,0.85), rgba(11,15,20,0.65));
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 0;
+    }
+    .logo { display: flex; align-items: center; gap: 10px; font-weight: 800; letter-spacing: 0.2px; }
+    .mark {
+      width: 34px; height: 34px; border-radius: 10px; position: relative; overflow: hidden; box-shadow: var(--shadow);
+      background: conic-gradient(from 220deg, var(--brand) 0 45%, white 45% 55%, var(--brand2) 55% 100%);
+    }
+    .nav a { margin-left: 18px; color: var(--text); opacity: 0.9; }
+    .btn { display: inline-block; padding: 12px 18px; border-radius: 12px; font-weight: 700; box-shadow: var(--shadow); }
+    .btn-primary { background: linear-gradient(135deg, var(--brand), #ff8533); color: #0d0f12; }
+    .btn-outline { border: 1px solid rgba(255,255,255,0.15); color: var(--text); }
+
+    .hero { display: grid; grid-template-columns: 1.2fr 1fr; gap: 36px; align-items: center; padding: 64px 0 28px; }
+    .hero h1 { font-size: clamp(28px, 4vw, 48px); line-height: 1.1; margin: 0 0 10px; }
+    .hero p { color: var(--muted); font-size: 1.05rem; margin: 0 0 20px; }
+    .hero-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius);
+      padding: 18px; display: grid; gap: 12px;
+    }
+    .badge { display: inline-flex; align-items: center; gap: 8px; font-size: 0.9rem; padding: 8px 12px; border-radius: 999px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); }
+
+    section { padding: 48px 0; }
+    .grid { display: grid; gap: 18px; }
+    .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; }
+      .grid-3 { grid-template-columns: 1fr; }
+      .grid-2 { grid-template-columns: 1fr; }
+    }
+    .card { background: var(--card); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius); padding: 18px; box-shadow: var(--shadow); }
+    h2 { font-size: clamp(22px, 3vw, 32px); margin: 0 0 12px; }
+    h3 { margin: 0 0 6px; font-size: 1.05rem; }
+    .muted { color: var(--muted); }
+    .list {
+      display: grid; gap: 8px; padding-left: 18px; margin: 8px 0 0;
+    }
+    .pill { display: inline-block; padding: 6px 10px; border-radius: 999px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); font-size: 0.9rem; }
+
+    .footer { padding: 28px 0 48px; color: var(--muted); font-size: 0.95rem; }
+    .sponsor { height: 44px; display: inline-flex; align-items: center; padding: 8px 12px; border-radius: 10px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); margin: 4px 6px 0 0; }
+    .cols { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 12px; }
+    .highlight { background: linear-gradient(90deg, rgba(255,106,0,0.2), rgba(18,136,7,0.2)); padding: 2px 8px; border-radius: 8px; }
+    .calendar iframe, .form-embed iframe, .map iframe { width: 100%; border: 0; border-radius: 12px; min-height: 420px; background: #0a0f14; }
+    .leaders { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 12px; }
+    .leader { text-align: center; padding: 14px; background: var(--card); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; }
+    .avatar { width: 72px; height: 72px; border-radius: 999px; background: linear-gradient(135deg, #ff6a0033, #12880733); margin: 0 auto 8px; display: grid; place-items: center; font-weight: 800; }
+    @media (max-width: 900px) { .leaders { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+    .flag { display: inline-flex; gap: 8px; align-items: center; font-weight: 700; }
+    .flag i { display: inline-block; width: 14px; height: 14px; background: linear-gradient(180deg, #ff9933 0 33%, #fff 33% 66%, #138808 66% 100%); border-radius: 3px; border: 1px solid rgba(255,255,255,0.25); }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="logo"><span class="mark" aria-hidden="true"></span> Indian Heritage Club</div>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#events">Events</a>
+        <a href="#join">Join</a>
+        <a href="#sponsors">Sponsors</a>
+        <a href="#contact" class="pill">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div>
+        <div class="badge"><span class="flag"><i></i> India on Campus</span> • Community • Culture • Celebration</div>
+        <h1>Celebrate Indian culture <span class="highlight">together</span>—festivals, food, music, and community.</h1>
+        <p>We host cultural nights, dance workshops, festival celebrations, and community service. Everyone is welcome—no prior experience needed.</p>
+        <div style="display:flex; gap:12px; flex-wrap: wrap; margin-top:14px;">
+          <a class="btn btn-primary" href="#join">Become a Member</a>
+          <a class="btn btn-outline" href="#events">See Upcoming Events</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="cols">
+          <h3 style="margin:0">Next big event</h3>
+          <span class="pill">Nov 1 · Cultural Night</span>
+        </div>
+        <p class="muted" style="margin:0">Dance showcases, Chai & Kheer, games, prizes, and more. Volunteers & sponsors welcome!</p>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <a class="btn btn-primary" href="#rsvp">RSVP</a>
+          <a class="btn btn-outline" href="#sponsor-us">Sponsor Us</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <h2>About Us</h2>
+      <div class="grid grid-2">
+        <div class="card">
+          <h3>Our mission</h3>
+          <p class="muted">To create a welcoming space to celebrate the diversity of India through festivals, food, film, music, and meaningful conversation. We connect students, alumni, and the local community.</p>
+          <ul class="list">
+            <li>Festival events: Diwali, Holi, Independence Day</li>
+            <li>Workshops: dance, music, cooking, language</li>
+            <li>Community: volunteering & cultural outreach</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Quick facts</h3>
+          <p class="muted">Membership is open to all students. No fees to join. Leadership opportunities available.</p>
+          <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:8px;">
+            <span class="pill">Weekly meetups</span>
+            <span class="pill">Leadership roles</span>
+            <span class="pill">Volunteer hours</span>
+            <span class="pill">Inclusive & diverse</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="events">
+      <h2>Upcoming Events</h2>
+      <div class="grid grid-2">
+        <div class="card calendar">
+          <h3>Club Calendar</h3>
+          <p class="muted" style="margin-top:4px">Embed your Google Calendar here. Replace the <code>src</code> URL below with your public calendar link.</p>
+          <iframe title="Club Calendar" src="https://calendar.google.com/calendar/embed?src=en.indian%40example.com&ctz=America%2FChicago"></iframe>
+        </div>
+        <div class="card">
+          <h3>Highlights</h3>
+          <ul class="list">
+            <li><strong>Diwali Night</strong> — lights, dance, and sweets</li>
+            <li><strong>Holi Bash</strong> — colors & music on the quad</li>
+            <li><strong>Film & Chai</strong> — monthly movie + discussion</li>
+          </ul>
+          <p class="muted" style="margin-top:8px">Want to perform or volunteer? Join the WhatsApp/Discord below or email us.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="join">
+      <h2>Join the Club</h2>
+      <div class="grid grid-2">
+        <div class="card form-embed">
+          <h3 id="rsvp">Membership / RSVP Form</h3>
+          <p class="muted">Create a Google Form and paste the share/embed URL below.</p>
+          <iframe title="Join Form" src="https://docs.google.com/forms/d/e/placeholder/viewform?embedded=true">Loading…</iframe>
+        </div>
+        <div class="card">
+          <h3>Stay connected</h3>
+          <p class="muted">Follow us and never miss an update.</p>
+          <ul class="list">
+            <li><a href="#">Instagram</a> • photo recaps & stories</li>
+            <li><a href="#">LinkedIn Group</a> • professional updates</li>
+            <li><a href="#">Discord / WhatsApp</a> • quick announcements</li>
+            <li><a href="#">Email list</a> • monthly newsletter</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="sponsors">
+      <div class="cols">
+        <h2>Our Sponsors & Partners</h2>
+        <a class="btn btn-outline" id="sponsor-us" href="#contact">Become a Sponsor</a>
+      </div>
+      <p class="muted">We gratefully acknowledge local businesses and campus partners who make our events possible.</p>
+      <div>
+        <span class="sponsor">Your Logo Here</span>
+        <span class="sponsor">Your Logo Here</span>
+        <span class="sponsor">Your Logo Here</span>
+      </div>
+      <div class="card" style="margin-top:14px;">
+        <h3>Sponsorship Tiers</h3>
+        <ul class="list">
+          <li><strong>Platinum</strong> — Stage mention, logo on posters, booth, social posts</li>
+          <li><strong>Gold</strong> — Logo on posters, social posts, free table</li>
+          <li><strong>Silver</strong> — Logo on website & one social post</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="leadership">
+      <h2>Leadership</h2>
+      <div class="leaders">
+        <div class="leader"><div class="avatar">P</div><div><strong>President</strong><br><span class="muted">Name Here</span></div></div>
+        <div class="leader"><div class="avatar">V</div><div><strong>Vice President</strong><br><span class="muted">Name Here</span></div></div>
+        <div class="leader"><div class="avatar">S</div><div><strong>Secretary</strong><br><span class="muted">Name Here</span></div></div>
+        <div class="leader"><div class="avatar">T</div><div><strong>Treasurer</strong><br><span class="muted">Name Here</span></div></div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <div class="grid grid-2">
+        <div class="card">
+          <h3>Get in touch</h3>
+          <p class="muted">Email: <a href="mailto:ihc@example.edu">ihc@example.edu</a><br>
+          Faculty Advisor: <a href="#">Dr. Name</a> · Room 367 · (320) 555‑0000</p>
+          <p class="muted">Location (meetups): Atwood Memorial Center · Room 123</p>
+        </div>
+        <div class="card map">
+          <h3>Map</h3>
+          <iframe title="Map" src="https://www.openstreetmap.org/export/embed.html?bbox=-94.165%2C45.55%2C-94.10%2C45.60&amp;layer=mapnik"></iframe>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="card">
+        <h3>Accessibility & Inclusion</h3>
+        <p class="muted">We aim to host inclusive events. If you need accommodations (dietary, mobility, sensory), please contact us at least 5 days in advance.</p>
+      </div>
+    </section>
+
+    <footer class="footer container">
+      <div>© <span id="year"></span> Indian Heritage Club • Built with ♥ for our community</div>
+      <div class="muted">Site admin login (private): <a href="#">/admin</a></div>
+    </footer>
+  </main>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    // Optional: smooth scrolling for nav links
+    document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
+      const id = a.getAttribute('href').slice(1);
+      const el = document.getElementById(id);
+      if (el) { e.preventDefault(); el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    }));
+  </script>
+</body>
+</html>
